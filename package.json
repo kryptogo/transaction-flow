@@ -1,0 +1,72 @@
+{
+  "name": "@arcblock/ocap-vue-starter",
+  "version": "0.2.0",
+  "files": [
+    "template",
+    "generator.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArcBlock/ocap-vue-starter"
+  },
+  "author": "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)",
+  "homepage": "https://github.com/ArcBlock/ocap-vue-starter",
+  "bugs": {
+    "url": "https://github.com/ArcBlock/ocap-vue-starter/issues",
+    "email": "shijun@arcblock.io"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "contributors": [
+    "wangshijun <shijun@arcblock.io> (https://ocap.arcblock.io)"
+  ],
+  "scripts": {
+    "prepublish": "rm -rf template/* && cp -r src template/ && cp -r public template/ && cp .editorconfig template/_editorconfig && cp vue.config.js template/",
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "deploy": "./deploy.sh",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@arcblock/ocap-js": "latest",
+    "babel-polyfill": "^6.26.0",
+    "semantic-ui-css": "^2.3.3",
+    "semantic-ui-vue": "^0.3.3",
+    "vue": "^2.5.17",
+    "vue-d3-network": "^0.1.26",
+    "vue-flowy": "^0.1.5",
+    "vue-graph": "^0.4.1",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.1",
+    "@vue/cli-plugin-eslint": "^3.0.1",
+    "@vue/cli-service": "^3.0.1",
+    "vue-template-compiler": "^2.5.17"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
