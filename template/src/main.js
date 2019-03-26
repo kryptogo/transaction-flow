@@ -1,5 +1,7 @@
+import 'babel-polyfill';
 import Vue from "vue";
 import SuiVue from 'semantic-ui-vue';
+import './libs/ocap';
 
 import 'semantic-ui-css/semantic.min.css';
 

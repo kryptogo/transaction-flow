@@ -22,10 +22,10 @@
 <script>
 import { dataSources, getClient } from '../libs/ocap'
 import {VueFlowy, FlowChart} from 'vue-flowy'
-  
+
 export default {
   name: 'app',
- 
+
   components: {
     VueFlowy
   },
@@ -46,9 +46,8 @@ getRelations: function resolveGraph(a) {
         outSet: null,
         inSet: null
     };
-    let out = a.accountByAddress.txsSent;
-    let income = a.accountByAddress.txsReceived;
-    // console.log(income.data);
+    let out = a.accountByAddress.transactions;
+    let income = a.accountByAddress.transactions;
     let outSet = new Set();
     let inSet = new Set();
     if (out.data.length > 0) {
@@ -64,11 +63,11 @@ getRelations: function resolveGraph(a) {
     finalResult.outSet = Array.from(outSet);
     finalResult.inSet = Array.from(inSet);
 
-console.log(finalResult)
+    console.log(finalResult)
     return finalResult;
 },
 getAccount: function getFromAndToByAddress(address) {
-    console.log("调用函数了") 
+    console.log("调用函数了")
     console.log(address)
     if (address == null) {
         address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa';
@@ -76,28 +75,23 @@ getAccount: function getFromAndToByAddress(address) {
     const client = getClient('btc');
     let result = client.doRawQuery(` {
         accountByAddress(address: "` + address + `") {
-            address balance txsReceived(paging: {
-                size: 2
-            }) {
-                data {
-                    hash blockHash inputs {
-                        data {
-                            account
-                        }
-                    }
-                }
-            }
-            txsSent(paging: {
-                size: 1
-            }) {
-                data {
-                    hash outputs {
-                        data {
-                            account
-                        }
-                    }
-                }
-            }
+        	address balance
+    			transactions {
+    			  data {
+    			    hash
+    			    blockHash
+    			    inputs {
+    			      data {
+    			        account
+    			      }
+    			    }
+    			    outputs {
+    			      data {
+    			        account
+    			      }
+    			    }
+    			  }
+    			}
         }
     }`);
     return result;
